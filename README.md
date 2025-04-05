@@ -1,5 +1,7 @@
 # 👨‍🏫 Find-a-Coach — Vue 3 App
 
+## 📖 About
+
 Find-a-Coach is a full-featured web application where users can register as coaches and receive contact requests from potential students.
 Built with modern front-end technologies, this app demonstrates dynamic routing, state management, and real-time data handling using Firebase.
 
