@@ -10,34 +10,35 @@ Built with modern front-end technologies, this app demonstrates dynamic routing,
 
 - 👥 Become a coach and get listed in the coaches directory
 
+- 🧾 Interactive **form validation** with real-time error feedback and input handling
+
+- 🧭 Dynamic routing with **Vue Router**, including coach profiles and request inbox
+
 - 🔐 Basic route protection (only non-coaches can register)
 
+- 💡 Built with **Vue 3 Composition API + `<script setup>` + TypeScript**
+  
 - 📦 State management with **Pinia**
 
-- 🎨 Clean and responsive UI with **Vue 3 Transitions**
+- 🎨 Smooth and responsive UI enhanced with **Vue 3 Transitions**
 
 - 💠 Rich UI icons with **Iconify for Vue**
 
+- 🔁 Handles data persistence and retrieval through **RESTful HTTP requests**
+
 - ☁️ Real-time backend powered by **Firebase**
 
-- 💡 Built with **Vue 3 Composition API + `<script setup>` + TypeScript**
 
 
 ## 🛠 Tech Stack
 
-- **Vue 3**
-
-- **TypeScript**
-
-- **Pinia**
-
-- **Firebase (Realtime Database)**
-
-- **Vue 3 Transitions**
-
-- **Iconify (Vue 3 icons)**
-
-- **Vite**
+- **Vue 3** (Composition API + `<script setup>`)
+- **TypeScript** (strictly typed Vue components)
+- **Pinia** (state management)
+- **Firebase** (Realtime Database for data storage and API)
+- **Vue 3 Transitions** (built-in animation features)
+- **Iconify** (modern SVG icon library for Vue)
+- **Vite** (blazing-fast development build tool)
 
 
 ## 📷 Preview
