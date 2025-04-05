@@ -22,7 +22,6 @@ Built with modern front-end technologies, this app demonstrates dynamic routing,
 
 - 💡 Built with **Vue 3 Composition API + `<script setup>` + TypeScript**
 
--
 
 ## 🛠 Tech Stack
 
