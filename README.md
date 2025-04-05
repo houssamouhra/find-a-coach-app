@@ -33,11 +33,17 @@ Built with modern front-end technologies, this app demonstrates dynamic routing,
 ## 🛠 Tech Stack
 
 - **Vue 3** (Composition API + `<script setup>`)
+
 - **TypeScript** (strictly typed Vue components)
+
 - **Pinia** (state management)
+
 - **Firebase** (Realtime Database for data storage and API)
+
 - **Vue 3 Transitions** (built-in animation features)
+
 - **Iconify** (modern SVG icon library for Vue)
+
 - **Vite** (blazing-fast development build tool)
 
 
