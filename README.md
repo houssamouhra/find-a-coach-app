@@ -41,7 +41,7 @@ Built with modern front-end technologies, this app demonstrates dynamic routing,
 - **Iconify (Vue 3 icons)**
 
 ## 📷 Preview
-![Screenshot 2025-04-05 145718](https://github.com/user-attachments/assets/dcfd24fe-d581-4c5e-b878-b069732a5b18)
+![Screenshot 2025-04-05 145718](https://github.com/user-attachments/assets/a0a750ef-cbe7-4b28-8bff-9d1fa5662b3c)
 
 
 ## Recommended IDE Setup
