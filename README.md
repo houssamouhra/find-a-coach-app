@@ -35,9 +35,10 @@ Built with modern front-end technologies, this app demonstrates dynamic routing,
 
 - **Vue 3 Transitions**
 
+- **Iconify (Vue 3 icons)**
+
 - **Vite**
 
-- **Iconify (Vue 3 icons)**
 
 ## 📷 Preview
 ![Screenshot 2025-04-05 145718](https://github.com/user-attachments/assets/a0a750ef-cbe7-4b28-8bff-9d1fa5662b3c)
