@@ -34,7 +34,7 @@ Built with modern front-end technologies, this app demonstrates dynamic routing,
 
 ## 🛠 Tech Stack
 
-- **Vue 3** (Composition API + `<script setup>`)
+- **Vue 3** (Composition API + `<script setup lang="ts">`)
 
 - **TypeScript** (strictly typed Vue components)
 
