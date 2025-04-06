@@ -18,7 +18,7 @@ Built with modern front-end technologies, this app demonstrates dynamic routing,
 
 - 🔐 Basic route protection (only non-coaches can register)
 
-- 💡 Built with **Vue 3 Composition API + `<script setup>` + TypeScript**
+- 💡 Built with **Vue 3 Composition API + `<script setup lang="ts">` + TypeScript**
   
 - 📦 State management with **Pinia**
 
