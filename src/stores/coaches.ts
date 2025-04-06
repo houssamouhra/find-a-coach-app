@@ -33,7 +33,7 @@ export const useCoaches = defineStore("coaches", () => {
       areas: ["frontend"],
       description:
         "I'm Houssam and I've worked as a freelance web developer for years. Let me help you become a developer as well!",
-      hourlyRate: 30,
+      hourlyRate: 20,
     },
     {
       id: "c2",

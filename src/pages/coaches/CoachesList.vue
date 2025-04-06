@@ -53,16 +53,33 @@ import { Icon } from "@iconify/vue";
 
 const coachesStore = useCoaches();
 
+// const filteredCoaches = computed(() => {
+//   const coaches = coachesStore.coaches;
+//   return coaches.filter((coach) => {
+//     if (activeFilters.frontend && coach.areas.includes("frontend")) {
+//       return true;
+//     }
+//     if (activeFilters.backend && coach.areas.includes("backend")) {
+//       return true;
+//     }
+//     if (activeFilters.career && coach.areas.includes("career")) {
+//       return true;
+//     }
+//     return false;
+//   });
+// });
+
 const filteredCoaches = computed(() => {
   const coaches = coachesStore.coaches;
   return coaches.filter((coach) => {
-    if (activeFilters.frontend && coach.areas.includes("frontend")) {
+    const areas = coach.areas || []; // fallback to empty array
+    if (activeFilters.frontend && areas.includes("frontend")) {
       return true;
     }
-    if (activeFilters.backend && coach.areas.includes("backend")) {
+    if (activeFilters.backend && areas.includes("backend")) {
       return true;
     }
-    if (activeFilters.career && coach.areas.includes("career")) {
+    if (activeFilters.career && areas.includes("career")) {
       return true;
     }
     return false;
@@ -72,6 +89,7 @@ const filteredCoaches = computed(() => {
 const hasCoaches = computed(() => {
   return !isLoading.value && coachesStore.coaches.length > 0;
 });
+
 type Filters = {
   frontend: boolean;
   backend: boolean;
