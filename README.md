@@ -1,9 +1,10 @@
 # 👨‍🏫 Find-a-Coach — Vue 3 App
 
-Find-a-Coach is a full-featured web application where users can register as coaches and receive contact requests from potential students.
+## 📖 About
+
+**Find-a-Coach** is a full-featured web application where users can register as coaches and receive contact requests from potential students.
 Built with modern front-end technologies, this app demonstrates dynamic routing, state management, and real-time data handling using Firebase.
 
-This template should help get you started developing with Vue 3 in Vite.
 
 ## 🚀 Features
 
@@ -11,39 +12,50 @@ This template should help get you started developing with Vue 3 in Vite.
 
 - 👥 Become a coach and get listed in the coaches directory
 
+- 🧾 Interactive **form validation** with real-time error feedback and input handling
+
+- 🧭 Dynamic routing with **Vue Router**, including coach profiles and request inbox
+
 - 🔐 Basic route protection (only non-coaches can register)
 
+- 💡 Built with **Vue 3 Composition API + `<script setup lang="ts">` + TypeScript**
+  
 - 📦 State management with **Pinia**
 
-- 🎨 Clean and responsive UI with **Vue 3 Transitions**
+- 🎨 Smooth and responsive UI enhanced with **Vue 3 Transitions**
 
 - 💠 Rich UI icons with **Iconify for Vue**
 
+- 🔁 Handles data persistence and retrieval through **RESTful HTTP requests**
+
 - ☁️ Real-time backend powered by **Firebase**
 
-- 💡 Built with **Vue 3 Composition API + `<script setup>` + TypeScript**
 
--
 
 ## 🛠 Tech Stack
 
-- **Vue 3**
+- **Vue 3** (Composition API + `<script setup>`)
 
-- **TypeScript**
+- **TypeScript** (strictly typed Vue components)
 
-- **Pinia**
+- **Pinia** (state management)
 
-- **Firebase (Realtime Database)**
+- **Firebase** (Realtime Database for data storage and API)
 
-- **Vue 3 Transitions**
+- **Vue 3 Transitions** (built-in animation features)
 
-- **Vite**
+- **Iconify** (modern SVG icon library for Vue)
 
-- **Iconify (Vue 3 icons)**
+- **Vite** (blazing-fast development build tool)
+
 
 ## 📷 Preview
+![Screenshot 2025-04-05 145718](https://github.com/user-attachments/assets/a0a750ef-cbe7-4b28-8bff-9d1fa5662b3c)
+
 
 ## Recommended IDE Setup
+
+_This template should help get you started developing with Vue 3 in Vite._
 
 [VSCode](https://code.visualstudio.com/) + [Vue](https://marketplace.visualstudio.com/items?itemName=Vue.volar).
 
