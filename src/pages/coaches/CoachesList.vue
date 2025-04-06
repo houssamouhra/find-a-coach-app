@@ -53,26 +53,10 @@ import { Icon } from "@iconify/vue";
 
 const coachesStore = useCoaches();
 
-// const filteredCoaches = computed(() => {
-//   const coaches = coachesStore.coaches;
-//   return coaches.filter((coach) => {
-//     if (activeFilters.frontend && coach.areas.includes("frontend")) {
-//       return true;
-//     }
-//     if (activeFilters.backend && coach.areas.includes("backend")) {
-//       return true;
-//     }
-//     if (activeFilters.career && coach.areas.includes("career")) {
-//       return true;
-//     }
-//     return false;
-//   });
-// });
-
 const filteredCoaches = computed(() => {
   const coaches = coachesStore.coaches;
   return coaches.filter((coach) => {
-    const areas = coach.areas || []; // fallback to empty array
+    const areas = coach.areas || [];
     if (activeFilters.frontend && areas.includes("frontend")) {
       return true;
     }
