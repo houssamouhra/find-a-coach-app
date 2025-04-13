@@ -81,8 +81,8 @@ const setFilter = (event: Event) => {
 .checkbox-icon .icon {
   display: flex;
   align-items: center;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border: 2px solid #3a616f;
   border-radius: 4px;
   color: transparent;

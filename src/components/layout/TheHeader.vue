@@ -3,14 +3,40 @@
     <nav>
       <h1><router-link to="/">Find a Coach</router-link></h1>
       <ul>
-        <li><router-link to="/coaches">All Coaches</router-link></li>
-        <li><router-link to="/requests">Requests</router-link></li>
+        <li>
+          <router-link to="/coaches">All Coaches</router-link>
+        </li>
+        <li v-if="isLoggedIn">
+          <router-link to="/requests">Requests</router-link>
+        </li>
+        <li v-else>
+          <router-link to="/auth">Login</router-link>
+        </li>
+        <li v-if="isLoggedIn">
+          <base-button @click="handleLogout">Logout</base-button>
+        </li>
       </ul>
     </nav>
   </header>
 </template>
 
-<script setup></script>
+<script setup>
+import { useAuth } from "@/composables/useAuth";
+import { useAuthStore } from "@/stores/auth";
+import { computed } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const authStore = useAuthStore();
+const { logout } = useAuth();
+
+const isLoggedIn = computed(() => authStore.isAuthenticated);
+
+const handleLogout = () => {
+  logout();
+  router.replace("/coaches");
+};
+</script>
 
 <style scoped>
 header {
@@ -30,6 +56,7 @@ header a {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   border: 1px solid transparent;
+  border-radius: 50px;
   transition: all 500ms;
 }
 

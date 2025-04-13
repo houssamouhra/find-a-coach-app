@@ -28,5 +28,3 @@ const saveData = (formData: {
   router.replace("/coaches");
 };
 </script>
-
-<style scoped></style>

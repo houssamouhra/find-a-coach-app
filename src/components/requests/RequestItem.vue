@@ -1,9 +1,9 @@
 <template>
   <li>
     <div>
-      <a :href="emailLink">{{ email }}</a>
+      <a :href="emailLink">{{ props.email }}</a>
     </div>
-    <p>{{ message }}</p>
+    <p>{{ props.message }}</p>
   </li>
 </template>
 
@@ -28,6 +28,7 @@ li {
   border: 1px solid #3a606e;
   border-bottom: 3px solid #3a606e;
   border-radius: 5px;
+  background-color: #fff;
   padding: 1rem;
 }
 

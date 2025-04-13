@@ -1,15 +1,25 @@
 <template>
   <form @submit.prevent="submitForm">
+    <!-- First Name -->
     <div class="form-control" :class="{ invalid: !firstName.isValid }">
-      <input
-        type="text"
-        id="firstname"
-        class="floating-input"
-        placeholder=""
-        v-model.trim="firstName.val"
-        @blur="clearValidity(firstName)"
-      />
-      <label for="firstname" class="floating-label">First name</label>
+      <div class="input-value">
+        <Icon
+          class="name-icon"
+          icon="solar:user-rounded-bold-duotone"
+          width="1.6em"
+          height="1.6em"
+          style="color: #3a606e"
+        />
+        <input
+          type="text"
+          id="firstname"
+          class="floating-input"
+          placeholder=""
+          v-model.trim="firstName.val"
+          @blur="clearValidity(firstName)"
+        />
+        <label for="firstname" class="floating-label">First name</label>
+      </div>
       <div class="error-msg" v-if="!firstName.isValid">
         <Icon
           icon="line-md:alert-circle-loop"
@@ -17,19 +27,30 @@
           height="24"
           style="color: #f00"
         />
-        <p>First name must not be empty.</p>
+        <p>First name must not be empty</p>
       </div>
     </div>
+
+    <!-- Last Name -->
     <div class="form-control" :class="{ invalid: !lastName.isValid }">
-      <input
-        type="text"
-        id="lastname"
-        class="floating-input"
-        placeholder=""
-        v-model.trim="lastName.val"
-        @blur="clearValidity(lastName)"
-      />
-      <label for="lastname" class="floating-label">Last name</label>
+      <div class="input-value">
+        <Icon
+          class="name-icon"
+          icon="solar:users-group-rounded-bold-duotone"
+          width="1.6em"
+          height="1.6em"
+          style="color: #3a606e"
+        />
+        <input
+          type="text"
+          id="lastname"
+          class="floating-input"
+          placeholder=""
+          v-model.trim="lastName.val"
+          @blur="clearValidity(lastName)"
+        />
+        <label for="lastname" class="floating-label">Last name</label>
+      </div>
       <div class="error-msg" v-if="!lastName.isValid">
         <Icon
           icon="line-md:alert-circle-loop"
@@ -37,19 +58,30 @@
           height="24"
           style="color: #f00"
         />
-        <p>Last name must not be empty.</p>
+        <p>Last name must not be empty</p>
       </div>
     </div>
+
+    <!-- Description -->
     <div class="form-control" :class="{ invalid: !description.isValid }">
-      <textarea
-        id="description"
-        class="floating-input"
-        placeholder=""
-        rows="5"
-        v-model.trim="description.val"
-        @blur="clearValidity(description)"
-      />
-      <label for="description" class="floating-label">Description</label>
+      <div class="input-value">
+        <Icon
+          class="desc-icon"
+          icon="solar:document-text-bold-duotone"
+          width="1.6em"
+          height="1.6em"
+          style="color: #3a606e"
+        />
+        <textarea
+          id="description"
+          class="floating-input"
+          placeholder=""
+          rows="5"
+          v-model.trim="description.val"
+          @blur="clearValidity(description)"
+        />
+        <label for="description" class="floating-label">Description</label>
+      </div>
       <div class="error-msg" v-if="!description.isValid">
         <Icon
           icon="line-md:alert-circle-loop"
@@ -57,19 +89,31 @@
           height="24"
           style="color: #f00"
         />
-        <p>Description must not be empty.</p>
+        <p>Description must not be empty</p>
       </div>
     </div>
+
+    <!-- Hourly Rate -->
     <div class="form-control" :class="{ invalid: !rate.isValid }">
-      <input
-        type="number"
-        id="rate"
-        class="floating-input"
-        placeholder=""
-        v-model.number="rate.val"
-        @blur="clearValidity(rate)"
-      />
-      <label for="rate" class="floating-label">Hourly Rate</label>
+      <div class="input-value">
+        <Icon
+          class="hour-icon"
+          icon="solar:hourglass-bold-duotone"
+          width="1.6em"
+          height="1.6em"
+          style="color: #3a606e"
+        />
+        <input
+          type="number"
+          id="rate"
+          class="floating-input"
+          placeholder=""
+          v-model.number="rate.val"
+          @blur="clearValidity(rate)"
+        />
+        <label for="rate" class="floating-label">Hourly Rate</label>
+      </div>
+
       <div class="error-msg" v-if="!rate.isValid">
         <Icon
           icon="line-md:alert-circle-loop"
@@ -77,67 +121,41 @@
           height="24"
           style="color: #f00"
         />
-        <p>Rate must not be greater than 0.</p>
+        <p>Rate must be greater than 0</p>
       </div>
     </div>
+
+    <!-- Areas of Expertise -->
     <div class="form-control">
       <div class="exp-area" :class="{ invalid: !areas.isValid }">
         <h3>Areas of Expertise</h3>
-        <div>
-          <label class="checkbox-icon">
-            <input
-              type="checkbox"
-              value="frontend"
-              v-model="areas.val"
-              @change="clearValidity(areas)"
+        <div class="areas-grid">
+          <div
+            v-for="area in availableAreas"
+            :key="area.value"
+            :class="['area-card', { selected: areas.val.includes(area.value) }]"
+            @click="toggleArea(area.value)"
+          >
+            <Icon
+              :icon="area.icon"
+              width="3rem"
+              height="2rem"
+              style="color: #3a606e"
             />
-            <span class="icon">
-              <Icon icon="pajamas:check-xs" width="20" height="20" />
-            </span>
-            <span>Frontend Development</span>
-          </label>
-        </div>
-        <div>
-          <label class="checkbox-icon">
-            <input
-              type="checkbox"
-              value="backend"
-              v-model="areas.val"
-              @change="clearValidity(areas)"
-            />
-            <span class="icon">
-              <Icon icon="pajamas:check-xs" width="20" height="20" />
-            </span>
-            <span>Backend Development</span>
-          </label>
-        </div>
-        <div>
-          <label class="checkbox-icon">
-            <input
-              type="checkbox"
-              value="career"
-              v-model="areas.val"
-              @change="clearValidity(areas)"
-            />
-            <span class="icon">
-              <Icon icon="pajamas:check-xs" width="20" height="20" />
-            </span>
-            <span>Career Advisory</span>
-          </label>
+            <span>{{ area.label }}</span>
+          </div>
         </div>
         <div class="error-msg" v-if="!areas.isValid">
-          <Icon
-            icon="line-md:alert-circle-loop"
-            width="24"
-            height="24"
-            style="color: #f00"
-          />
           <p>At least one expertise must be selected!</p>
         </div>
       </div>
     </div>
-    <p v-if="!formIsValid">Please fix the above errors and submit again.</p>
-    <base-button>Register</base-button>
+    <p v-if="!formIsValid" style="color: #f00">
+      Please fix the above errors and submit again
+    </p>
+    <div class="submit">
+      <base-button class="register-btn">Register</base-button>
+    </div>
   </form>
 </template>
 
@@ -146,6 +164,40 @@ import { computed, ref, defineEmits, reactive } from "vue";
 import { Icon } from "@iconify/vue";
 
 const emits = defineEmits(["save-data"]);
+
+type Areas = {
+  value: string;
+  label: string;
+  icon: string;
+};
+
+const availableAreas: Areas[] = [
+  {
+    value: "frontend",
+    label: "Frontend Development",
+    icon: "uim:html3-alt",
+  },
+  {
+    value: "backend",
+    label: "Backend Development",
+    icon: "solar:database-bold-duotone",
+  },
+  {
+    value: "career",
+    label: "Career Advisory",
+    icon: "solar:money-bag-bold-duotone",
+  },
+];
+
+const toggleArea = (area: string) => {
+  const index = areas.val.indexOf(area);
+  if (index === -1) {
+    areas.val.push(area);
+  } else {
+    areas.val.splice(index, 1);
+  }
+  clearValidity(areas);
+};
 
 interface Field<T> {
   val: T;
@@ -207,13 +259,13 @@ const validateForm = () => {
   }
 };
 
-interface Formdata {
+type Formdata = {
   first: string;
   last: string;
   desc: string;
   rate: number | null;
   areas: string[];
-}
+};
 
 //prettier-ignore
 const formData = computed<Formdata>(()=>({
@@ -230,15 +282,20 @@ const submitForm = () => {
     return;
   }
   const data = formData.value;
-  console.log("Form submitted:", data);
   emits("save-data", data);
 };
 </script>
 
-<style>
+<style scoped>
 .form-control {
   position: relative;
   margin: 2rem auto;
+}
+
+.input-value {
+  display: flex;
+  position: relative;
+  align-items: center;
 }
 
 .floating-input {
@@ -246,11 +303,11 @@ const submitForm = () => {
   display: block;
   border-radius: 5px;
   font: inherit;
-  padding: 1.25rem 0.5rem 0.5rem 0.5rem;
+  padding: 1.25rem 0.5rem 0.5rem 2.3rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-bottom: 2px solid #ccc;
-  background: transparent;
+  background: #fff;
   box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.1);
   outline: none;
   transition: border-color 0.3s ease;
@@ -259,7 +316,7 @@ const submitForm = () => {
 .floating-label {
   position: absolute;
   top: 1rem;
-  left: 0.5rem;
+  left: 2.3rem;
   font-size: 1rem;
   font-weight: 500;
   color: #888;
@@ -269,6 +326,10 @@ const submitForm = () => {
 
 .floating-input:focus {
   border-bottom-color: #3a616f;
+}
+
+.floating-input:focus .name-icon {
+  color: #607b7d;
 }
 
 .floating-input:focus + .floating-label,
@@ -285,6 +346,30 @@ const submitForm = () => {
   }
 }
 
+.name-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 75%;
+  left: 1.2%;
+  transform: translateY(-100%);
+}
+
+.desc-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 73%;
+  left: 1.2%;
+  transform: translateY(-310%);
+}
+
+.hour-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 75%;
+  left: 1.2%;
+  transform: translateY(-95%);
+}
+
 .checkbox-icon {
   display: flex;
   font-weight: 500;
@@ -298,9 +383,10 @@ const submitForm = () => {
 }
 
 .checkbox-icon .icon {
-  display: inline-flex;
-  width: 23px;
-  height: 23px;
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
   border: 2px solid #3a616f;
   border-radius: 4px;
   color: transparent;
@@ -315,6 +401,11 @@ const submitForm = () => {
 
 .form-control {
   margin: 0.5rem 0;
+}
+
+.submit {
+  margin-top: 1rem;
+  margin-bottom: 0.2rem;
 }
 
 button {
@@ -343,8 +434,40 @@ h3 {
   font-size: 1rem;
 }
 
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.area-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.1);
+  transition: all 300ms ease-in-out;
+}
+
+.area-card:hover {
+  border-color: #3a616f;
+  box-shadow: none;
+  transition: all 300ms ease-in-out;
+}
+
+.area-card.selected {
+  background-color: #ebeff1;
+  border-color: #3a616f;
+  box-shadow: 0 0 0 3px rgba(58, 97, 111, 0.3);
+}
+
 .exp-area {
-  margin-top: 1.3rem;
+  margin-top: 1.7rem;
 }
 
 .invalid label {
@@ -363,7 +486,8 @@ h3 {
 .error-msg {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 7px;
   color: #f00;
+  font-size: small;
 }
 </style>

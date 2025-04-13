@@ -22,20 +22,27 @@ const text = computed(() => props.title);
   padding: 3px 10px;
   display: inline-block;
   margin-right: 0.5rem;
+  transition: all 300ms;
+}
+
+.badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  transition: all 300ms;
 }
 
 .frontend {
-  background-color: #f27d71;
-  color: white;
+  background-color: #fff7e6;
+  color: #ff9800;
 }
 
 .backend {
-  background-color: #927bbf;
-  color: white;
+  background-color: #f9e6f0;
+  color: #6a0f49;
 }
 
 .career {
-  background-color: #eed25d;
-  color: white;
+  background-color: #e5f6f7;
+  color: #2e6e74;
 }
 </style>

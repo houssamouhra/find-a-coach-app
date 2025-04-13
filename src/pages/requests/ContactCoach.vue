@@ -2,24 +2,42 @@
   <div>
     <form @submit.prevent="submitForm">
       <div class="form-control">
-        <input
-          type="text"
-          id="email"
-          class="floating-input"
-          placeholder=""
-          v-model.trim="email"
-        />
-        <label for="email" class="floating-label">Your Email</label>
+        <div class="input-value">
+          <Icon
+            class="email-icon"
+            icon="solar:letter-line-duotone"
+            width="1.6em"
+            height="1.6em"
+            style="color: #3a606e"
+          />
+          <input
+            type="text"
+            id="email"
+            class="floating-input"
+            placeholder=""
+            v-model.trim="email"
+          />
+          <label for="email" class="floating-label">Email</label>
+        </div>
       </div>
       <div class="form-control">
-        <textarea
-          id="message"
-          placeholder=""
-          rows="5"
-          class="floating-input"
-          v-model.trim="message"
-        ></textarea>
-        <label for="message" class="floating-label">Message</label>
+        <div class="input-value">
+          <Icon
+            class="desc-icon"
+            icon="solar:document-text-bold-duotone"
+            width="1.6em"
+            height="1.6em"
+            style="color: #3a606e"
+          />
+          <textarea
+            id="message"
+            placeholder=""
+            rows="5"
+            class="floating-input"
+            v-model.trim="message"
+          ></textarea>
+          <label for="message" class="floating-label">Message</label>
+        </div>
       </div>
       <div class="error-msg" v-if="!formIsValid">
         <Icon
@@ -38,11 +56,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { useRequests } from "@/stores/requests";
 import { useRoute, useRouter } from "vue-router";
 import { Icon } from "@iconify/vue/dist/iconify.js";
-import type { Payload } from "@/stores/requests";
 
 const route = useRoute();
 const router = useRouter();
@@ -53,8 +70,9 @@ const email = ref<string>("");
 const message = ref<string>("");
 const formIsValid = ref<boolean>(true);
 
-const submitForm: any = computed(() => {
+const submitForm = async () => {
   formIsValid.value = true;
+
   if (
     email.value === "" ||
     !email.value.includes("@") ||
@@ -63,13 +81,22 @@ const submitForm: any = computed(() => {
     formIsValid.value = false;
     return;
   }
-  requestsStore.contactCoach(<Payload>{
-    email: email.value,
-    message: message.value,
-    coachId: route.params.id,
-  });
-  router.replace("/coaches");
-});
+
+  console.log("📬 submitForm triggered");
+
+  try {
+    await requestsStore.contactCoach(
+      route.params.id as string,
+      email.value,
+      message.value
+    );
+
+    console.log("Sending to coach ID:", route.params.id);
+    router.replace("/coaches");
+  } catch (err) {
+    formIsValid.value = false;
+  }
+};
 </script>
 
 <style scoped>
@@ -85,11 +112,35 @@ form {
   margin: 1rem auto;
 }
 
+.input-value {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.email-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 75%;
+  left: 1.3%;
+  transform: translateY(-100%);
+}
+
+.desc-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 75%;
+  left: 1.2%;
+  transform: translateY(-310%);
+}
+
 .floating-input {
   width: 100%;
-  padding: 1.25rem 0.5rem 0.5rem 0.5rem;
+  padding: 1.25rem 0.5rem 0.5rem 2.3rem;
   font-size: 1rem;
+  font-family: inherit;
   border: 1px solid #ccc;
+  border-radius: 5px;
   border-bottom: 2px solid #ccc;
   background: transparent;
   box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.1);
@@ -100,7 +151,7 @@ form {
 .floating-label {
   position: absolute;
   top: 1rem;
-  left: 0.5rem;
+  left: 2.3rem;
   font-size: 1rem;
   font-weight: 500;
   color: #888;
@@ -132,11 +183,11 @@ form {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 7px;
 }
 
 .errors {
-  font-weight: 500;
+  font-weight: small;
   color: red;
 }
 

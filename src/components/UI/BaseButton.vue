@@ -1,8 +1,8 @@
 <template>
-  <button v-if="!link">
+  <button v-if="!props.link" :class="props.mode">
     <slot></slot>
   </button>
-  <router-link v-else :to="to" :class="mode">
+  <router-link v-else :to="props.to" :class="props.mode">
     <slot></slot>
   </router-link>
 </template>
@@ -76,6 +76,7 @@ button:active {
 .flat:active,
 .outline:hover,
 .outline:active {
+  color: #fff;
   background-color: #3a606e;
 }
 </style>

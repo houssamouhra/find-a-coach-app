@@ -6,6 +6,8 @@ import CoachRegistration from "@/pages/coaches/CoachRegistration.vue";
 import ContactCoach from "@/pages/requests/ContactCoach.vue";
 import RequestReceived from "@/pages/requests/RequestReceived.vue";
 import NotFound from "@/pages/NotFound.vue";
+import UserAuth from "@/pages/auth/UserAuth.vue";
+import { useAuthStore } from "@/stores/auth";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -20,15 +22,32 @@ const router = createRouter({
       children: [
         {
           path: "contact",
-          component: ContactCoach,
+          component: () => import("@/pages/requests/ContactCoach.vue"),
           name: "coach-contact",
         },
       ],
     },
-    { path: "/register", component: CoachRegistration },
-    { path: "/requests", component: RequestReceived },
+    // prettier-ignore
+    { path: "/register", component: CoachRegistration, meta: { requiresAuth: true }},
+    // prettier-ignore
+    { path: "/requests", component: RequestReceived, meta: 
+    { requiresAuth: true }},
+    // prettier-ignore
+    { path: "/auth", component: UserAuth, meta: 
+    { requiresUnauth: true }},
     { path: "/:notFound(.*)", component: NotFound },
   ],
+});
+
+router.beforeEach((to, _, next) => {
+  const authStore = useAuthStore();
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    next("/auth");
+  } else if (to.meta.requiresUnauth && authStore.isAuthenticated) {
+    next("/coaches");
+  } else {
+    next();
+  }
 });
 
 export default router;

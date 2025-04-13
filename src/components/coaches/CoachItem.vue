@@ -1,10 +1,10 @@
 <template>
   <li>
     <h3>{{ fullName }}</h3>
-    <h4>${{ rate }}/hour</h4>
+    <h4>${{ props.rate }}/hour</h4>
     <div>
       <base-badge
-        v-for="area in areas"
+        v-for="area in props.areas"
         :key="area"
         :type="area"
         :title="area"
@@ -19,12 +19,12 @@
   </li>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { computed, defineProps } from "vue";
 import { useRoute } from "vue-router";
 
 interface Props {
-  id?: string;
+  id?: string | null;
   firstName: string;
   lastName: string;
   rate: number;

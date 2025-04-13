@@ -15,7 +15,7 @@
         <div class="spinner" v-if="isLoading">
           <base-spinner></base-spinner>
         </div>
-        <ul v-else-if="hasRequests && !isLoading">
+        <ul v-else-if="hasRequests() && !isLoading">
           <request-item
             v-for="req in receivedRequests"
             :key="req.id"
@@ -38,16 +38,16 @@ const requestsStore = useRequests();
 
 const receivedRequests = computed(() => requestsStore.receivedRequests);
 
-const hasRequests = computed(() => requestsStore.hasRequests);
+const hasRequests = () => requestsStore.hasRequests();
 
 const isLoading = ref<boolean>(false);
-const error = ref<null>(null);
+const error = ref<null | string>(null);
 
 onMounted(() => {
   loadRequests();
 });
 
-const loadRequests = async () => {
+const loadRequests = async (): Promise<void> => {
   isLoading.value = true;
   try {
     await requestsStore.fetchRequests();
@@ -75,6 +75,7 @@ ul {
 }
 
 h3 {
+  font-size: medium;
   text-align: center;
 }
 

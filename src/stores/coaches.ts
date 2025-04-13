@@ -1,8 +1,9 @@
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
+import { useAuthStore } from "./auth";
 
 export interface CoachInterface {
-  id?: string;
+  id?: string | null;
   firstName: string;
   lastName: string;
   areas: string[];
@@ -19,20 +20,14 @@ interface NewCoachData {
 }
 
 export const useCoaches = defineStore("coaches", () => {
-  const lastFetch = ref<number | null>(null);
-
-  const setFetchTimestamp = () => {
-    lastFetch.value = new Date().getTime();
-  };
-
   const coaches = ref<CoachInterface[]>([
     {
       id: "c1",
-      firstName: "Houssam",
-      lastName: "Ouhra",
+      firstName: "Trevor",
+      lastName: "Philips",
       areas: ["frontend"],
       description:
-        "I'm Houssam and I've worked as a freelance web developer for years. Let me help you become a developer as well!",
+        "I'm Trevor and I've worked as a freelance web developer for years. Let me help you become a developer as well!",
       hourlyRate: 20,
     },
     {
@@ -46,11 +41,19 @@ export const useCoaches = defineStore("coaches", () => {
     },
   ]);
 
-  const userId = ref<string>("c4");
+  const lastFetch = ref<number | null>(null);
+
+  const setFetchTimestamp = () => {
+    lastFetch.value = new Date().getTime();
+  };
+
+  const authStore = useAuthStore();
+
+  // const userId = ref<null | string>(null);
 
   const registerCoach = async (data: NewCoachData) => {
     const coachData: CoachInterface = {
-      // id: userId.value,
+      // id: data.id;
       firstName: data.first,
       lastName: data.last,
       description: data.desc,
@@ -58,8 +61,11 @@ export const useCoaches = defineStore("coaches", () => {
       areas: data.areas,
     };
 
+    const id = authStore.userId;
+    const token = authStore.token;
+
     const response = await fetch(
-      `https://find-a-coach-55f09-default-rtdb.firebaseio.com/coaches/${userId.value}.json`,
+      `https://find-a-coach-55f09-default-rtdb.firebaseio.com/coaches/${id}.json?auth=${token}`,
       {
         method: "PUT",
         body: JSON.stringify(coachData),
@@ -67,12 +73,12 @@ export const useCoaches = defineStore("coaches", () => {
     );
 
     if (!response.ok) {
-      //error ...
+      throw new Error("Failed to register coach.");
     }
 
     const newCoach: CoachInterface = {
       ...coachData,
-      id: userId.value,
+      id,
     };
     coaches.value.push(newCoach);
   };
@@ -82,7 +88,8 @@ export const useCoaches = defineStore("coaches", () => {
   };
 
   const isCoach = computed(() => {
-    return coaches.value.some((coach) => coach.id === userId.value);
+    const id = authStore.userId;
+    return coaches.value.some((coach) => coach.id === id);
   });
 
   const shouldUpdate = computed(() => {
@@ -129,7 +136,6 @@ export const useCoaches = defineStore("coaches", () => {
     coaches,
     lastFetch,
     registerCoach,
-    userId,
     shouldUpdate,
     isCoach,
     loadCoaches,

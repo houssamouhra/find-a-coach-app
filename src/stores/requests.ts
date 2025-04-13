@@ -1,94 +1,111 @@
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
-import { useCoaches } from "./coaches";
+import { useAuthStore } from "./auth";
 
-type Request = {
-  id?: string;
-  coachId?: string;
+export type Request = {
+  id: string;
+  coachId: string;
   userEmail: string;
   message: string;
-};
-
-export type Payload = {
-  coachId: string;
-  email: string;
-  message: string;
+  userId: string;
 };
 
 export const useRequests = defineStore("requests", () => {
-  const coachesStore = useCoaches();
   const requests = ref<Request[]>([]);
 
-  const contactCoach = async (payload: Payload) => {
-    const newRequest: Request = {
-      userEmail: payload.email,
-      message: payload.message,
+  const addRequest = (request: Request) => {
+    requests.value.push(request);
+  };
+
+  const setRequests = (requestList: Request[]) => {
+    requests.value = requestList;
+  };
+
+  const authStore = useAuthStore();
+
+  const receivedRequests = computed(() => {
+    const coachId = authStore.userId;
+    return requests.value.filter((req) => req.coachId === coachId);
+  });
+
+  // Send a request to a coach
+  const contactCoach = async (
+    coachId: string,
+    email: string,
+    message: string
+  ) => {
+    const newRequest = {
+      userEmail: email,
+      message,
+      userId: authStore.userId,
     };
+
     const response = await fetch(
-      `https://find-a-coach-55f09-default-rtdb.firebaseio.com/requests/${payload.coachId}.json`,
+      `https://find-a-coach-55f09-default-rtdb.firebaseio.com/requests/${coachId}.json`,
       {
         method: "POST",
         body: JSON.stringify(newRequest),
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
     );
 
     const responseData = await response.json();
 
     if (!response.ok) {
-      const error = new Error(
-        responseData.message || "Failed to send request."
-      );
-      throw error;
+      throw new Error(responseData.message || "Failed to send request.");
     }
 
-    newRequest.id = responseData.name;
-    newRequest.coachId = payload.coachId;
-
-    requests.value.push(newRequest);
+    addRequest(<any>{
+      ...newRequest,
+      id: responseData.name,
+      coachId,
+    });
   };
 
+  // Fetch requests for the currently logged-in coach
   const fetchRequests = async () => {
-    const coachId = coachesStore.userId;
+    const coachId = authStore.userId;
+    const token = authStore.token;
+
+    if (!token || !coachId) {
+      throw new Error("Not authenticated");
+    }
+
     const response = await fetch(
-      `https://find-a-coach-55f09-default-rtdb.firebaseio.com/requests/${coachId}.json`
+      `https://find-a-coach-55f09-default-rtdb.firebaseio.com/requests/${coachId}.json?auth=${token}`
     );
 
     const responseData = await response.json();
 
     if (!response.ok) {
-      const error = new Error(
-        responseData.message || "Failed to fetch requests."
-      );
-      throw error;
+      throw new Error(responseData.message || "Failed to fetch requests.");
     }
 
     const loadedRequests: Request[] = [];
 
-    for (const key in responseData) {
-      const request: Request = {
-        id: key,
+    for (const requestId in responseData) {
+      const req = responseData[requestId];
+      loadedRequests.push({
+        id: requestId,
         coachId: coachId,
-        userEmail: responseData[key].userEmail,
-        message: responseData[key].message,
-      };
-      loadedRequests.push(request);
+        userEmail: req.userEmail,
+        message: req.message,
+        userId: req.senderId,
+      });
     }
 
-    requests.value = loadedRequests;
+    setRequests(loadedRequests);
   };
 
-  const receivedRequests = computed(() => {
-    const coachId = coachesStore.userId;
-    return requests.value.filter((req) => req.coachId == coachId);
-  });
-
-  const hasRequests = computed(() => receivedRequests.value.length > 0);
+  const hasRequests = () => requests.value.length > 0;
 
   return {
-    contactCoach,
-    receivedRequests,
-    hasRequests,
     requests,
+    receivedRequests,
+    contactCoach,
     fetchRequests,
+    hasRequests,
   };
 });

@@ -14,13 +14,16 @@
       <base-card>
         <div class="controls">
           <button title="Refresh" @click="loadCoaches(true)">
-            <Icon
-              icon="solar:refresh-square-bold-duotone"
-              width="40"
-              height="40"
-            />
+            <!-- prettier-ignore -->
+            <Icon icon="solar:refresh-square-bold-duotone" width="40" height="40"/>
           </button>
-          <base-button v-if="!isCoach" link to="/register"
+          <base-button link to="/auth?redirect=register" v-if="!isLoggedIn"
+            >Login to register as a coach</base-button
+          >
+          <base-button
+            v-if="isLoggedIn && !isCoach && !isLoading"
+            link
+            to="/register"
             >Register as Coach</base-button
           >
         </div>
@@ -30,7 +33,7 @@
         <ul v-else-if="hasCoaches">
           <coach-item
             v-for="coach in filteredCoaches"
-            :key="coach.id"
+            :key="coach.id ?? coach.firstName"
             :id="coach.id"
             :first-name="coach.firstName"
             :last-name="coach.lastName"
@@ -49,9 +52,11 @@ import CoachItem from "@/components/coaches/CoachItem.vue";
 import CoachFilter from "@/components/coaches/CoachFilter.vue";
 import { ref, reactive, computed, onMounted } from "vue";
 import { useCoaches } from "@/stores/coaches";
+import { useAuthStore } from "@/stores/auth";
 import { Icon } from "@iconify/vue";
 
 const coachesStore = useCoaches();
+const authStore = useAuthStore();
 
 const filteredCoaches = computed(() => {
   const coaches = coachesStore.coaches;
@@ -99,6 +104,7 @@ const setFilters = (updatedFilters: Filters) => {
   activeFilters.career = updatedFilters.career;
 };
 
+const isLoggedIn = authStore.isAuthenticated;
 const isCoach = coachesStore.isCoach;
 
 const loadCoaches = async (refresh: boolean = false) => {
@@ -140,7 +146,7 @@ svg {
 }
 
 svg:hover {
-  color: #6f6f6f;
+  color: #61818c;
   transition: all 200ms;
 }
 

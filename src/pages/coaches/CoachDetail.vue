@@ -37,7 +37,7 @@ import { ref, computed } from "vue";
 
 const route = useRoute();
 const router = useRouter();
-const store = useCoaches();
+const coachStore = useCoaches();
 
 type Coach = {
   id?: string;
@@ -50,24 +50,28 @@ type Coach = {
 
 const props = defineProps<{ id: string }>();
 
-const selectedCoach = ref<Coach | null>(null);
-
-// const contactLink = computed(() => "contact");
+//prettier-ignore
+onMounted(async () => {
+  if (coachStore.coaches.length === 0) {
+    await coachStore.loadCoaches();
+  }
+});
 
 const contactLink = computed(
   () =>
     router.resolve({
       name: "coach-contact",
-      params: { id: route.params.id },
+      params: { id: props.id },
     }).href
+);
+
+const selectedCoach = computed(
+  () => coachStore.coaches.find((coach) => coach.id === props.id) || null
 );
 
 const areas = computed(() => selectedCoach.value?.areas);
 const rate = computed(() => selectedCoach.value?.hourlyRate);
 const description = computed(() => selectedCoach.value?.description);
-
-//prettier-ignore
-onMounted(() => {selectedCoach.value = store.coaches.find((coach) => coach.id === props.id) || null});
 
 //prettier-ignore
 const fullName = computed(() => selectedCoach.value?.firstName + " " + selectedCoach.value?.lastName);
