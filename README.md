@@ -4,6 +4,7 @@
 
 **Find-a-Coach** is a full-featured web application where users can register as coaches and receive contact requests from potential students.
 Built with modern front-end technologies, this app demonstrates dynamic routing, state management, and real-time data handling using Firebase.
+It also features secure Firebase authentication with signup, login, auto-logout, and token-based session handling for a smooth user experience.
 
 
 ## 🚀 Features
@@ -28,6 +29,8 @@ Built with modern front-end technologies, this app demonstrates dynamic routing,
 
 - 🔁 Handles data persistence and retrieval through **RESTful HTTP requests**
 
+- 🔑 Secure Firebase authentication with signup, login, auto-logout, and token-based session management
+
 - ☁️ Real-time backend powered by **Firebase**
 
 
@@ -40,7 +43,7 @@ Built with modern front-end technologies, this app demonstrates dynamic routing,
 
 - **Pinia** (state management)
 
-- **Firebase** (Realtime Database for data storage and API)
+- **Firebase** (Realtime Database for data storage, REST API, and authentication with secure session handling)
 
 - **Vue 3 Transitions** (built-in animation features)
 
