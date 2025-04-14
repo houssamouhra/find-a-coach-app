@@ -1,7 +1,7 @@
 import { useAuthStore } from "@/stores/auth";
+const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
 export const useAuth = () => {
-  const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
   const authStore = useAuthStore();
 
   const auth = async (
