@@ -15,18 +15,6 @@ export const useAuthStore = defineStore("auth", () => {
   const tokenExpiration = ref<string | null>(null);
   const didAutoLogout = ref<boolean>(false);
 
-  // const safeToken = computed(() => {
-  //   if (!token.value) {
-  //     throw new Error("No token — user not authenticated.");
-  //   }
-  //   return token.value;
-  // });
-
-  // const safeUserId = computed(() => {
-  //   if (!userId.value) throw new Error("No user ID found");
-  //   return userId.value as string;
-  // });
-
   const setAuthData = (payload: AuthData) => {
     userId.value = payload.localId;
     token.value = payload.idToken;
@@ -94,8 +82,6 @@ export const useAuthStore = defineStore("auth", () => {
     userId,
     token,
     tokenExpiration,
-    // safeToken,
-    // safeUserId,
     isAuthenticated,
     setAuthData,
     tryLogin,

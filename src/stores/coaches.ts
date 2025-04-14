@@ -49,11 +49,8 @@ export const useCoaches = defineStore("coaches", () => {
 
   const authStore = useAuthStore();
 
-  // const userId = ref<null | string>(null);
-
   const registerCoach = async (data: NewCoachData) => {
     const coachData: CoachInterface = {
-      // id: data.id;
       firstName: data.first,
       lastName: data.last,
       description: data.desc,

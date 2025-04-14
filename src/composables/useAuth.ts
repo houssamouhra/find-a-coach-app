@@ -1,6 +1,7 @@
 import { useAuthStore } from "@/stores/auth";
 
 export const useAuth = () => {
+  const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
   const authStore = useAuthStore();
 
   const auth = async (
@@ -8,12 +9,10 @@ export const useAuth = () => {
     password: string,
     mode: "login" | "signup"
   ) => {
-    let url =
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAU3wwRQxE1nEmEFS5o1ghN1va3XVWJWDo";
+    let url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
 
     if (mode === "signup") {
-      url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAU3wwRQxE1nEmEFS5o1ghN1va3XVWJWDo";
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`;
     }
 
     const response = await fetch(url, {
