@@ -6,7 +6,7 @@
 Built with modern front-end technologies, this app demonstrates dynamic routing, state management, and real-time data handling using Firebase.
 It also features secure Firebase authentication with signup, login, auto-logout, and token-based session handling for a smooth user experience.
 
-🔗 [Live Demo](https://find-a-coach-houssam.netlify.app/)
+🔗 [Live App](https://find-a-coach-houssam.netlify.app/)
 
 ## 🚀 Features
 
