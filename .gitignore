@@ -19,11 +19,11 @@ coverage
 /cypress/screenshots/
 
 # Playwright
-node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+**/node_modules/
+**/test-results/
+**/playwright-report/
+**/blob-report/
+**/playwright/.cache/
 
 
 # Editor directories and files
