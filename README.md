@@ -90,8 +90,18 @@ All tests were successfully executed and passed in the latest run — ensuring a
 
 To execute the Playwright tests locally:
 
+# Install dependencies
+```bash
+npm install
+```
+
+# Install Playwright browsers
 ```bash
 npx playwright install
+```
+
+# Run all tests
+```bash
 npx playwright test
 ```
 
