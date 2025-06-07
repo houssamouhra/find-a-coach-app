@@ -58,29 +58,33 @@ This project includes automated **end-to-end tests** written using **[Playwright
 
 ### 🧪 What’s Tested
 
-- ✅ **Homepage redirect**: Auto-redirects from `/` to `/coaches`
-- ✅ **Static content**: Verifies key UI elements like headings and links are visible
-- ✅ **Navigation**: Clicking on “Login” correctly redirects to `/auth`
+- **Homepage redirect**: Auto-redirects from `/` to `/coaches`
+- **Static content**: Verifies key UI elements like headings and links are visible
+- **Navigation**: Clicking on “Login” correctly redirects to `/auth`
 <details>
-<summary>✅ <strong>Authentication</strong></summary>
-
+<summary><strong>Authentication</strong></summary>
 - Login with valid credentials works and redirects to `/coaches`  
 - Login with invalid or empty credentials shows proper validation and error messages  
 - Signup with empty inputs triggers validation errors  
 - Signup with existing credentials displays error alerts  
 - Signup with new credentials works and redirects to `/coaches`
-
 </details>
-- ✅ **Authorization**:
-  - Unauthorized access to `/register` redirects to login
-  - Logged-in users can access `/register` to become a coach
-- ✅ **Coach Registration**:
-  - Form submission with valid data registers a new coach
-  - Redirects to the coaches list showing the new coach profile
-- ✅ **Session Management**:
-  - Logout button appears after login
-  - Clicking logout successfully signs out the user and hides protected elements
-
+<details>
+<summary><strong>Authorization</strong></summary>
+- Unauthorized access to `/register` redirects to login
+- Logged-in users can access `/register` to become a coach
+</details>
+<details>
+<summary><strong>Coach Registration</strong></summary>
+- Form submission with valid data registers a new coach
+- Redirects to the coaches list showing the new coach profile
+</details>
+<details>
+<summary><strong>Session Management</strong></summary>
+- Logout button appears after login
+- Clicking logout successfully signs out the user and hides protected elements
+</details>
+  
 All tests were successfully executed and passed in the latest run — ensuring a **stable and functional user experience** from end to end.
 
 ### 🚀 Run Tests Locally
