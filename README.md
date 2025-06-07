@@ -2,7 +2,8 @@
 
 ![Vue](https://img.shields.io/badge/vue-3.x-brightgreen?logo=vue.js) &nbsp;
 ![TypeScript](https://img.shields.io/badge/typescript-grey?logo=typescript) &nbsp;
-![Tests](https://img.shields.io/badge/playwright-passing-brightgreen?logo=playwright)
+![Tests](https://img.shields.io/badge/playwright-passing-brightgreen?logo=playwright) &nbsp;
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1c7f3270-52d0-4779-821a-688db894543a/deploy-status)](https://app.netlify.com/projects/find-a-coach-houssam/deploys)
 
 ## 📖 About
 
