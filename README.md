@@ -57,7 +57,7 @@ It also features secure Firebase authentication with signup, login, auto-logout,
 This project includes automated **end-to-end tests** written using **[Playwright](https://playwright.dev/)** to ensure the core user flows work as expected.
 
 <details>
-<summary>🧪 Click to view detailed test coverage</summary>
+<summary>**🧪 Click to view detailed test coverage**</summary>
 
 - ✔️ **Homepage redirect**: Auto-redirects from `/` to `/coaches`
 - ✔️ **Static content**: Verifies key UI elements like headings and links are visible
