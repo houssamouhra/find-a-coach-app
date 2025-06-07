@@ -61,12 +61,16 @@ This project includes automated **end-to-end tests** written using **[Playwright
 - ✅ **Homepage redirect**: Auto-redirects from `/` to `/coaches`
 - ✅ **Static content**: Verifies key UI elements like headings and links are visible
 - ✅ **Navigation**: Clicking on “Login” correctly redirects to `/auth`
-- ✅ **Authentication**: 
-  - Login with valid credentials works and redirects to `/coaches`
-  - Login with invalid or empty credentials shows proper validation and error messages
-  - Signup with empty inputs triggers validation errors
-  - Signup with existing credentials displays error alerts
-  - Signup with new credentials works and redirects to `/coaches`
+<details>
+<summary>✅ <strong>Authentication</strong></summary>
+
+- Login with valid credentials works and redirects to `/coaches`  
+- Login with invalid or empty credentials shows proper validation and error messages  
+- Signup with empty inputs triggers validation errors  
+- Signup with existing credentials displays error alerts  
+- Signup with new credentials works and redirects to `/coaches`
+
+</details>
 - ✅ **Authorization**:
   - Unauthorized access to `/register` redirects to login
   - Logged-in users can access `/register` to become a coach
