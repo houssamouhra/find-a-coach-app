@@ -1,5 +1,9 @@
 # 👨‍🏫 Find-a-Coach — Vue 3 App
 
+![Tests](https://img.shields.io/badge/playwright-passing-brightgreen?logo=playwright)
+![Vue](https://img.shields.io/badge/vue-3.x-brightgreen?logo=vue.js)
+![TypeScript](https://img.shields.io/badge/typescript-grey?logo=typescript)
+
 ## 📖 About
 
 **Find-a-Coach** is a full-featured web application where users can register as coaches and receive contact requests from potential students.
