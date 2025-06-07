@@ -71,8 +71,8 @@ This project includes automated **end-to-end tests** written using **[Playwright
 </details>
 <details>
 <summary><strong>Authorization</strong></summary>
-- Unauthorized access to `/register` redirects to login
-- Logged-in users can access `/register` to become a coach
+ - Unauthorized access to `/register` redirects to login
+ - Logged-in users can access `/register` to become a coach
 </details>
 <details>
 <summary><strong>Coach Registration</strong></summary>
