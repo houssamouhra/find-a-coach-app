@@ -52,6 +52,48 @@ It also features secure Firebase authentication with signup, login, auto-logout,
 
 - **Vite** (blazing-fast development build tool)
 
+## ✅ Testing with Playwright
+
+This project includes automated **end-to-end tests** written using **[Playwright](https://playwright.dev/)** to ensure the core user flows work as expected.
+
+### 🧪 What’s Tested
+
+- ✅ **Homepage redirect**: Auto-redirects from `/` to `/coaches`
+- ✅ **Static content**: Verifies key UI elements like headings and links are visible
+- ✅ **Navigation**: Clicking on “Login” correctly redirects to `/auth`
+- ✅ **Authentication**: 
+  - Login with valid credentials works and redirects to `/coaches`
+  - Login with invalid or empty credentials shows proper validation and error messages
+  - Signup with empty inputs triggers validation errors
+  - Signup with existing credentials displays error alerts
+  - Signup with new credentials works and redirects to `/coaches`
+- ✅ **Authorization**:
+  - Unauthorized access to `/register` redirects to login
+  - Logged-in users can access `/register` to become a coach
+- ✅ **Coach Registration**:
+  - Form submission with valid data registers a new coach
+  - Redirects to the coaches list showing the new coach profile
+- ✅ **Session Management**:
+  - Logout button appears after login
+  - Clicking logout successfully signs out the user and hides protected elements
+
+All tests were successfully executed and passed in the latest run — ensuring a **stable and functional user experience** from end to end.
+
+### 🚀 Run Tests Locally
+
+To execute the Playwright tests locally:
+
+```bash
+npx playwright install
+npx playwright test
+```
+
+For visual debugging:
+
+```bash
+npx playwright test --headed
+```
+
 
 ## 📷 Preview
 ![Screenshot 2025-04-05 145718](https://github.com/user-attachments/assets/a0a750ef-cbe7-4b28-8bff-9d1fa5662b3c)
