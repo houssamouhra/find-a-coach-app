@@ -1,8 +1,8 @@
 # 👨‍🏫 Find-a-Coach — Vue 3 App
 
-![Tests](https://img.shields.io/badge/playwright-passing-brightgreen?logo=playwright)
 ![Vue](https://img.shields.io/badge/vue-3.x-brightgreen?logo=vue.js)
 ![TypeScript](https://img.shields.io/badge/typescript-grey?logo=typescript)
+![Tests](https://img.shields.io/badge/playwright-passing-brightgreen?logo=playwright)
 
 ## 📖 About
 
