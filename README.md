@@ -95,17 +95,17 @@ To execute the Playwright tests locally:
 npm install
 ```
 
-**Install dependencies:**
+**Install Playwright browsers:**
 ```bash
 npx playwright install
 ```
 
-**Install dependencies:**
+**Run all tests:**
 ```bash
 npx playwright test
 ```
 
-**Install dependencies:**
+**For visual debugging:**
 ```bash
 npx playwright test --headed
 ```
